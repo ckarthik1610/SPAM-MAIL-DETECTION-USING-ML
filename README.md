@@ -1,63 +1,37 @@
-# SPAM-MAIL-DETECTION-USING-ML
+# SPAM MAIL DETECTION USING MACHINE LEARNING
 
-```python
-import numpy as np
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
+The SPAM MAIL DETECTION is a Machine Learning Model based on Logistical Regression. This system invloves differentiating the Mail text into lebels called SPAM and HAM.
 
-raw_mail_data = pd.read_csv('/content/mail_data.csv')
+**Sample Dataset:**
 
-# Raw Data
-print(raw_mail_data)
+![image](https://github.com/ckarthik1610/SPAM-MAIL-DETECTION-USING-ML/assets/160818854/7c98f711-08a3-481d-a4a4-502be8392040)
 
-# Filtering Null Datasets
-mail_data = raw_mail_data.where((pd.notnull(raw_mail_data)),'')
-mail_data.head(15)
+The system imports the dataset and filters NULL datasets out, then initialises the labels into 0 and 1's (SPAM = 0, HAM = 1).
 
-# Remaining Datasets after filtering Null datasets out
-mail_data.shape
+**TRAIN AND TEST DATA:**
+        The system splits the dataset into training and testing datasets. The model we incorporated uses a 80% training and 20% testing dataset.
 
-# Assigning Labels as 0 and 1
-mail_data.loc[mail_data['Category'] == 'spam', 'Category',] = 0
-mail_data.loc[mail_data['Category'] == 'ham', 'Category',] = 1
+**FEATURE EXTRACTION**
+        This system extracts the words from the mail text and finds words in the mail that act as important features in differentiating SPAM and HAM mail. This method uses a English words repository that omits words like 'of', 'are', 'with' that does not neessarily impact in the distinction. The text in the mail is converted to a numerical value, that later helps in the prediction.
 
-#Seperating data as text and Label
-X = mail_data['Message']
-Y = mail_data['Category']
+![image](https://github.com/ckarthik1610/SPAM-MAIL-DETECTION-USING-ML/assets/160818854/d3462943-02a6-4456-aa9a-15b1af6a2018)
 
-#Splitting Training and Testing Data (80/20)
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=5)
-print(X.shape)
-print(X_train.shape)
-print(X_test.shape)
+**TRAINING THE MODEL**
+        The logistical regression model is trained, using the Feature Extraction data, this model is now capable of making predictions.
 
-# transform the text data to feature vectors that can be used as input to the Logistic regression
-feature_extraction = TfidfVectorizer(min_df = 1, stop_words='english', lowercase=True)
-X_train_features = feature_extraction.fit_transform(X_train)
-X_test_features = feature_extraction.transform(X_test)
+![image](https://github.com/ckarthik1610/SPAM-MAIL-DETECTION-USING-ML/assets/160818854/f6e292e7-f01f-4738-a072-32888d061d5d)
 
-# convert Y_train and Y_test values as integers
-Y_train = Y_train.astype('int')
-Y_test = Y_test.astype('int')
-```
-### TRAINING THE LOGISTIC REGRESSION MODEL
-```
-model = LogisticRegression()
-model.fit(X_train_features, Y_train)
 
-```
-### Training Data
-```python
-# Prediction
-prediction_on_training_data = model.predict(X_train_features)
-accuracy_on_training_data = accuracy_score(Y_train, prediction_on_training_data)
-     
+**EVALUATING THE MODEL**
+        The Model is then cross-verified with the test data labels when tested with the testing data (remaining 20% data). 
 
-# Accuracy
-print('Accuracy on training data : ', accuracy_on_training_data)
-```
+![image](https://github.com/ckarthik1610/SPAM-MAIL-DETECTION-USING-ML/assets/160818854/66a1b6ba-7719-4868-aae1-e132eb23fee7)
 
-### Testing Data
+**OUTPUT**
+
+![image](https://github.com/ckarthik1610/SPAM-MAIL-DETECTION-USING-ML/assets/160818854/948865ed-d303-4c2b-ace4-d8c2a8f5349e)
+
+
+
+
+
