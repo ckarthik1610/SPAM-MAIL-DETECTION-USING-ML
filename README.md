@@ -8,6 +8,9 @@ The SPAM MAIL DETECTION is a Machine Learning Model based on Logistical Regressi
 
 The system imports the dataset and filters NULL datasets out, then initialises the labels into 0 and 1's (SPAM = 0, HAM = 1).
 
+![image](https://github.com/ckarthik1610/SPAM-MAIL-DETECTION-USING-ML/assets/160818854/66d72c46-7b92-4683-bea9-f7f084130362)
+
+
 **TRAIN AND TEST DATA:**
         The system splits the dataset into training and testing datasets. The model we incorporated uses a 80% training and 20% testing dataset.
 
